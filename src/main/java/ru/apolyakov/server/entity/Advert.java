@@ -1,18 +1,22 @@
 package ru.apolyakov.server.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import ru.apolyakov.security.entity.User;
+import ru.apolyakov.shared.dto.AdvertDto;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "ADVERTS")
 public class Advert {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = true)
+    private User author;
 
     public Advert() {
     }
@@ -22,10 +26,18 @@ public class Advert {
         this.description = description;
     }
 
-    public Advert(ru.apolyakov.shared.dto.Advert source) {
+    public Advert(AdvertDto source) {
         this.id = source.getId();
         this.title = source.getTitle();
         this.description = source.getDescription();
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public long getId() {

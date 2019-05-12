@@ -3,21 +3,21 @@ package ru.apolyakov.shared.dto;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User {
+public class UserDto {
     private final long id;
-    private final Set<Advert> createdAdverts = new HashSet<>();
-    private final Set<Advert> favouriteAdverts = new HashSet<>();
+    private final Set<AdvertDto> createdAdverts = new HashSet<>();
+    private final Set<AdvertDto> favouriteAdverts = new HashSet<>();
 
     private String login;
     private String email;
     private String location;
     private String description;
 
-    public User(long id) {
+    public UserDto(long id) {
         this.id = id;
     }
 
-    public User(long id, String login, String email, String location, String description) {
+    public UserDto(long id, String login, String email, String location, String description) {
         this.id = id;
         this.login = login;
         this.email = email;
@@ -29,11 +29,11 @@ public class User {
         return id;
     }
 
-    public Set<Advert> getCreatedAdverts() {
+    public Set<AdvertDto> getCreatedAdverts() {
         return createdAdverts;
     }
 
-    public Set<Advert> getFavouriteAdverts() {
+    public Set<AdvertDto> getFavouriteAdverts() {
         return favouriteAdverts;
     }
 
