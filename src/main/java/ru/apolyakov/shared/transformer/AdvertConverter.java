@@ -10,6 +10,6 @@ public class AdvertConverter {
     }
 
     public static AdvertDto convert(Advert source) {
-        return source == null ? null : new AdvertDto(source.getId(), source.getTitle(), source.getDescription());
+        return source == null ? null : new AdvertDto(source);
     }
 }

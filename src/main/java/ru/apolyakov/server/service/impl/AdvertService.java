@@ -69,4 +69,8 @@ public class AdvertService implements IAdvertService {
     public Advert saveOrUpdateAdvert(Advert advert) {
         return advertRepository.save(advert);
     }
+
+    public List<Advert> saveAdverts(List<Advert> adverts) {
+        return Lists.newArrayList(advertRepository.saveAll(adverts));
+    }
 }

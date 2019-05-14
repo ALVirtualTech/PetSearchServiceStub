@@ -11,6 +11,5 @@ import ru.apolyakov.security.entity.User;
  */
 public interface UserRepository extends CrudRepository<User, Long> {
     User getByLogin(String login);
-
     User getById(Long id);
 }

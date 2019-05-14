@@ -10,8 +10,10 @@ import ru.apolyakov.shared.dto.AdvertDto;
 import ru.apolyakov.shared.transformer.AdvertConverter;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 @RestController(value = "/api/web")
 @CrossOrigin
@@ -33,6 +35,14 @@ public class AdvertRestController {
         Set<AdvertDto> result = Sets.newHashSet();
         advertsService.getAdverts(start, size).forEach(it -> result.add(AdvertConverter.convert(it)));
         return result;
+    }
+
+    @RequestMapping(value = "/adverts", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin
+    public List<AdvertDto> saveAdverts(@RequestBody(required = true) List<AdvertDto> advertDtos) {
+        List<Advert> adverts = advertDtos.stream().map(AdvertConverter::convert).collect(Collectors.toList());
+        return advertsService.saveAdverts(adverts).stream().map(AdvertConverter::convert).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/adverts/{userId}", method = RequestMethod.GET)
