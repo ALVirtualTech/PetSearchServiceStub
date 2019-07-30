@@ -18,4 +18,6 @@ public interface AdvertRepository extends CrudRepository<Advert, Long> {
     Page<Advert> getAdvertByAuthor(User author, Pageable pageable);
 
     List<Advert> getTopByAuthor(User author);
+
+    Page<Advert> findAdvertsByTitleContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description, Pageable pageable);
 }

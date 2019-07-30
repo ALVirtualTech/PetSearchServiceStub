@@ -35,4 +35,13 @@ public interface IAdvertService {
      * @return список объявлений
      */
     Iterable<Advert> getAdvertsByIds(List<Long> ids);
+
+    /**
+     * Поиск объявлений по поисковому запросу по соответствию части названия или описания
+     * @param searchQuery поисковый запрос
+     * @param startPosition начальная позиция результирующей выборки
+     * @param portion размер выборки из БД
+     * @return набор объявлений, удовлетворяющих критериям поиска
+     */
+    List<Advert> search(String searchQuery, long startPosition, int portion);
 }

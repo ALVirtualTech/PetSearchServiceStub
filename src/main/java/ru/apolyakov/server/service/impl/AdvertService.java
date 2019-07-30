@@ -73,4 +73,10 @@ public class AdvertService implements IAdvertService {
     public List<Advert> saveAdverts(List<Advert> adverts) {
         return Lists.newArrayList(advertRepository.saveAll(adverts));
     }
+
+    @Override
+    public List<Advert> search(String searchQuery, long startPosition, int portion) {
+        int page = (int) startPosition / portion;
+        return searchQuery == null ? advertRepository.findAll(PageRequest.of(page, portion)).getContent() : advertRepository.findAdvertsByTitleContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchQuery, searchQuery, PageRequest.of(page, portion)).getContent();
+    }
 }
